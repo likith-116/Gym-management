@@ -58,4 +58,4 @@ Feel free to fork the repository and submit pull requests for improvements or bu
 This project is open source and available under the MIT License.
 
 ## Contact
-For any queries or support, please contact the project maintainer.
+For any queries or support, please contact likithyadav14@gmail.com
