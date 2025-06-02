@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard - Akshat Fitness</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3399cc;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul li {
+            display: inline;
+        }
+        header nav ul li a, header nav button.logout-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        header nav ul li a:hover, header nav button.logout-btn:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px 40px;
+        }
+        .metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex: 1;
+            text-align: center;
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #3399cc;
+        }
+        .card p {
+            margin: 5px 0 0;
+            font-weight: bold;
+            color: #555;
+            font-size: 1.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        .table-wrapper {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #3399cc;
+            color: white;
+            z-index: 1;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            white-space: nowrap;
+        }
+        th {
+            background-color: #3399cc;
+            color: white;
+        }
+        caption {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        #charts {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        canvas {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex: 1;
+            padding: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <header>
+            <h1>Admin Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="#bookings">Bookings</a></li>
+                    <li><a href="#transactions">Transactions</a></li>
+                    <li><a href="#trainer-approvals">Trainer Approvals</a></li>
+                    <li><a href="#trainee-approvals">Trainee Approvals</a></li>
+                    <li><button class="logout-btn" id="logoutBtn">Logout</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="metrics">
+            <div class="card">
+                <h2 id="totalBookings">0</h2>
+                <p>Total Bookings</p>
+            </div>
+            <div class="card">
+                <h2 id="totalRevenue">0</h2>
+                <p>Total Revenue (INR)</p>
+            </div>
+            <div class="card">
+                <h2 id="totalUsers">0</h2>
+                <p>Total Users</p>
+            </div>
+        </div>
+
+        <section id="bookings">
+            <div class="table-wrapper">
+                <table id="bookingsTable">
+                    <caption>Bookings</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Bookings will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="transactions">
+            <div class="table-wrapper">
+                <table id="transactionsTable">
+                    <caption>Transactions</caption>
+                    <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>Booking ID</th>
+                            <th>Order ID</th>
+                            <th>Amount (INR)</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Transactions will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="trainer-approvals">
+            <div class="table-wrapper">
+                <table id="trainerApprovalsTable">
+                    <caption>Trainer Registrations Pending Approval</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Approved</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Trainer approvals will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="trainee-approvals">
+            <div class="table-wrapper">
+                <table id="traineeApprovalsTable">
+                    <caption>Trainee Registrations Pending Approval</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Services</th>
+                            <th>Experience</th>
+                            <th>Certifications</th>
+                            <th>Approved</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Trainee approvals will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="js/admin-access-control.js"></script>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

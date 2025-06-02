@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trainee Registration</title>
+    <link rel="stylesheet" href="trainee-registration.css" />
+</head>
+<body class="auth-page">
+    <h1>Trainee Registration</h1>
+    <form id="traineeRegistrationForm">
+        <input type="hidden" id="uid" />
+    <label for="name" style="display:none;">Name:</label>
+    <input type="text" id="name" readonly style="display:none;" />
+
+    <label for="phone" style="display:none;">Phone:</label>
+    <input type="text" id="phone" readonly style="display:none;" />
+
+    <label for="email" style="display:none;">Email:</label>
+    <input type="email" id="email" readonly style="display:none;" />
+
+        <label for="services">Services Provided:</label>
+        <select id="services" required>
+            <option value="" disabled selected>Select a service</option>
+            <option value="Physical Fitness">Physical Fitness</option>
+            <option value="Strength Training">Strength Training</option>
+            <option value="Weight Gain">Weight Gain</option>
+            <option value="Weight Lifting">Weight Lifting</option>
+            <option value="Running">Running</option>
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="Cardio">Cardio</option>
+        </select>
+
+        <label for="experience">Experience (years):</label>
+        <input type="number" id="experience" min="0" required />
+
+        <label for="certifications">Certifications:</label>
+        <textarea id="certifications" placeholder="List your certifications" required></textarea>
+
+        <button type="submit">Submit Registration</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script type="module" src="js/trainee-registration.js"></script>
+</body>
+</html>

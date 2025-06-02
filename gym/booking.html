@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Booking - Akshat Fitness</title>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .box {
+            background-color: rgba(49, 49, 49, 0.7);
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 20px 30px;
+            width: 350px;
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .inputbox {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .sub {
+            background-color: rgb(100, 167, 250);
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Book a Training Session</h2>
+        <form id="bookingForm">
+            <div class="inputbox">
+                <label for="name">Name</label>
+                <input type="text" id="name" required />
+            </div>
+            <div class="inputbox">
+                <label for="email">Email</label>
+                <input type="email" id="email" required />
+            </div>
+            <div class="inputbox">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required />
+            </div>
+            <div class="inputbox">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" required />
+            </div>
+            <div class="inputbox">
+                <label for="time">Preferred Time</label>
+                <input type="time" id="time" required />
+            </div>
+            <div class="inputbox">
+                <label for="service">Service</label>
+                <select id="service" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Physical Fitness">Physical Fitness</option>
+                    <option value="Strength Training">Strength Training</option>
+                    <option value="Weight Gain">Weight Gain</option>
+                    <option value="Weight Lifting">Weight Lifting</option>
+                    <option value="Running">Running</option>
+                    <option value="Weight Loss">Weight Loss</option>
+                    <option value="Cardio">Cardio</option>
+                </select>
+            </div>
+            <button type="submit" class="sub">Book Now</button>
+        </form>
+    </div>
+
+    <script type="module" src="js/user-access-control.js"></script>
+    <script type="module" src="js/booking.js"></script>
+</body>
+</html>

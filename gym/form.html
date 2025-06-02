@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box{
+    height: 400px;
+    width: 300px;
+    padding: 20px 30px; 
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    background-color: rgba(49,49,49, 0.5);
+    border: 2px solid white;
+}
+.box .form{
+    padding: 10px 20px;
+}
+.box .form h2{
+    color: white;
+    text-align: center;
+}
+.box .form form{
+    margin-top: 20px;
+    align-items: center;
+    margin-left: 18px;
+}
+.box .form form input{
+    padding: 10px 20px;
+
+}
+.inputbox{
+    margin-top: 15px;
+}
+span{
+    color: white;
+    font-size: 14px;
+}
+.sub{
+background-color: rgb(100, 167, 250);
+border-radius: 5px;
+margin-top: 50px;
+cursor: grab;
+color: white;
+font-size: 20px;
+}
+    </style>
+</head>
+<body>
+    <header style="background-color: #313131; padding: 10px 20px; border-bottom: 2px solid white;">
+        <a href="index.html" style="color: white; font-size: 20px; text-decoration: none;">Home</a>
+    </header>
+    <div class="box">
+        <div class="form">
+            <h2>Joining Form</h2>
+            <form id="joiningForm">
+                <div class="inputbox">
+                    <span>username</span><input type="text" value="" id="username" required>
+                </div>
+                <div class="inputbox">
+                   <span>e-mail </span><input type="email" value="" id="email" required>
+                </div>
+                <div class="inputbox">
+                   <span>number</span> <input type="number" value="" id="number" required>
+                </div>
+                <input type="submit" value="submit" class="sub" id="submit">
+            </form>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getDatabase,ref , set , get , child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        import { db } from './firebase-config.js';
+
+        document.getElementById("joiningForm").addEventListener('submit', function(e) {
+          e.preventDefault();
+          set(ref(db , 'user/'+ document.getElementById("username").value),
+
+          {
+              username : document.getElementById("username").value,
+              email : document.getElementById("email").value,
+              number : document.getElementById("number").value,
+          });
+          alert("We'll contact you soon at your given mail or contact number");
+          this.reset();
+        });
+
+
+        </script>
+</body>
+</html>

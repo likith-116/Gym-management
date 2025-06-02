@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register - Likith Fitness</title>
+    <link rel="stylesheet" href="register.css" />
+</style>
+</head>
+<body class="auth-page">
+    <div class="box">
+        <h2>Create Account</h2>
+        <form id="registerForm">
+            <div class="inputbox">
+                <label for="name">Name</label>
+                <input type="text" id="name" required />
+            </div>
+            <div class="inputbox">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required />
+            </div>
+            <div class="inputbox">
+                <label for="email">Email</label>
+                <input type="email" id="email" required />
+            </div>
+            <div class="inputbox">
+                <label for="password">Password</label>
+                <input type="password" id="password" required minlength="6" />
+            </div>
+            <div class="inputbox">
+                <label>Role</label>
+                <select id="role" required>
+                    <option value="user" selected>User</option>
+                    <option value="admin">Admin</option>
+                    <option value="trainee">Trainee</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <div class="message">
+            Already have an account? <a href="login.html" class="link">Login here</a>
+        </div>
+        <div id="error-message" class="message" style="color: #ff6b6b;"></div>
+        <div id="success-message" class="message" style="color: #4caf50;"></div>
+    </div>
+
+    <script type="module" src="./js/register.js"></script>
+    <script type="module">
+      import { auth } from './js/firebase-config.js';
+      import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+      const loginLink = document.getElementById("login-link");
+      const registerLink = document.getElementById("register-link");
+      const logoutLink = document.getElementById("logout-link");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in
+          // You can update UI here if needed
+        } else {
+          // User is signed out
+          // You can update UI here if needed
+        }
+      });
+
+      logoutLink?.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+          window.location.href = "index.html";
+        });
+      });
+    </script>
+</body>
+</html>
